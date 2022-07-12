@@ -1,0 +1,417 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Creatio Swagger",
+      "description": "Это сайт визуального представления Веб-сервисов (API) системы Creatio. Ниже описаны запросы которые на данный момент можно вызвать через данный OAS.",
+      "version": "0.0.1"
+    },
+    "servers": [
+      {
+        "description": "Дев среда Creatio Монополия",
+        "url": "http://tst-appterra-02.monopoly.su/"
+      },
+      {
+        "description": "Продуктивная среда Creatio Монополия",
+        "url": "https://crm.monopoly.su/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Creatio Auth",
+        "description": "Аутентификация в системе Creatio"
+      },
+      {
+        "name": "Сreatio Web-Services (API)",
+        "description": "Веб-сервисы (API) cистемы Creatio"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "ASPXAUTH": {
+          "type": "apiKey",
+          "in": "cookie",
+          "name": ".ASPXAUTH"
+        },
+        "BPMCSRF": {
+          "type": "apiKey",
+          "in": "cookie",
+          "name": "BPMCSRF"
+        }
+      },
+      "schemas": {
+        "user": {
+          "title": "Объект пользователя системы Creatio",
+          "type": "object",
+          "properties": {
+            "UserName": {
+              "type": "string",
+              "description": "Логин пользователя Creatio",
+              "example": "Supervisor"
+            },
+            "UserPassword": {
+              "type": "string",
+              "description": "Логин пользователя Creatio",
+              "example": "Supervisor"
+            }
+          }
+        },
+        "auth_answer_0": {
+          "title": "Положительный ответ авторизации в системе Creatio",
+          "type": "object",
+          "properties": {
+            "Code": {
+              "type": "integer",
+              "description": "Код ответа",
+              "example": 0
+            },
+            "Message": {
+              "type": "string",
+              "description": "Сообщение ответа",
+              "example": ""
+            },
+            "Exception": {
+              "type": "object",
+              "description": "Объект с информацией о ошибке",
+              "example": null
+            },
+            "PasswordCahngeUrl": {
+              "type": "object",
+              "description": "Ссылка на изменение пароля",
+              "example": null
+            },
+            "RedirectUrl": {
+              "type": "object",
+              "description": "Ссылка на ...",
+              "example": null
+            }
+          }
+        },
+        "auth_answer_1": {
+          "title": "Отрицательный ответ авторизации в системе Creatio",
+          "type": "object",
+          "properties": {
+            "Code": {
+              "type": "integer",
+              "description": "Код ответа",
+              "example": 1
+            },
+            "Message": {
+              "type": "string",
+              "description": "Сообщение ответа",
+              "example": "Неправильное имя пользователя или пароль."
+            },
+            "Exception": {
+              "type": "object",
+              "description": "Объект с информацией о ошибке",
+              "properties": {
+                "HelpLink": {
+                  "type": "string",
+                  "description": "Ссылка на ...",
+                  "example": null
+                },
+                "InnerException": {
+                  "type": "string",
+                  "description": "Я не знаю ...",
+                  "example": null
+                },
+                "Message": {
+                  "type": "string",
+                  "description": "Сообщение об ошибке",
+                  "example": "Ошибка безопасности."
+                },
+                "StackTrace": {
+                  "type": "string",
+                  "description": "Не наю ...",
+                  "example": "Ошибка безопасности."
+                },
+                "Type": {
+                  "type": "string",
+                  "description": "Код ошибки",
+                  "example": "System.Security.SecurityException."
+                }
+              }
+            },
+            "PasswordCahngeUrl": {
+              "type": "string",
+              "description": "Ссылка на изменение пароля",
+              "example": null
+            },
+            "RedirectUrl": {
+              "type": "string",
+              "description": "Ссылка на ...",
+              "example": null
+            }
+          }
+        },
+        "create_lead": {
+          "title": "JSON для созданя Лида",
+          "type": "object",
+          "properties": {
+            "accountShortname": {
+              "type": "string",
+              "description": "Короткое название контрагента",
+              "example": "ООО \"ЭНТИКОМ-ИНВЕСТ\""
+            },
+            "leadTypeId": {
+              "type": "string",
+              "description": "GUID записи",
+              "example": "171d093b-cc4d-4995-a083-e6d26c6734da"
+            },
+            "phone": {
+              "type": "string",
+              "description": "Номер телефона",
+              "example": "78202251010"
+            },
+            "inn": {
+              "type": "string",
+              "description": "ИНН",
+              "example": "3528080289"
+            },
+            "kpp": {
+              "type": "string",
+              "description": "КПП",
+              "example": "352801001"
+            },
+            "utm": {
+              "type": "object",
+              "description": "UTM",
+              "properties": {
+                "source": {
+                  "type": "string",
+                  "description": "UtmSource",
+                  "example": "source"
+                },
+                "medium": {
+                  "type": "string",
+                  "description": "UtmMedium",
+                  "example": "medium"
+                },
+                "campaign": {
+                  "type": "string",
+                  "description": "UtmCampaign",
+                  "example": "campaign"
+                },
+                "content": {
+                  "type": "string",
+                  "description": "UtmContent",
+                  "example": "content"
+                },
+                "term": {
+                  "type": "string",
+                  "description": "UtmTerm",
+                  "example": "term"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "ASPXAUTH": []
+      },
+      {
+        "BPMCSRF": []
+      }
+    ],
+    "paths": {
+      "/0/ServiceModel/OmniCustomAuth.svc/Login": {
+        "post": {
+          "security": [],
+          "tags": [
+            "Creatio Auth"
+          ],
+          "summary": "Авторизация в системе Creatio.",
+          "description": "Авторизация с целью получения Cookies для последующей аутентификации при выполнении друних запросов",
+          "requestBody": {
+            "description": "Body для передачу данных пользователя в систему Creatio",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Ответ на попытку авторизации от системы Creatio",
+              "headers": {
+                "Set-Cookie[0]": {
+                  "schema": {
+                    "type": "string",
+                    "example": "UserName=abcde12345; Path=/; HttpOnly"
+                  }
+                },
+                "Set-Cookie[1]": {
+                  "schema": {
+                    "type": "string",
+                    "example": "BPMLOADER=abcde12345; Path=/; HttpOnly"
+                  }
+                },
+                "Set-Cookie[2]": {
+                  "schema": {
+                    "type": "string",
+                    "example": ".ASPXAUTH=abcde12345; Path=/; HttpOnly"
+                  }
+                },
+                "Set-Cookie[3]": {
+                  "schema": {
+                    "type": "string",
+                    "example": "BPMCSRF=abcde12345; Path=/; HttpOnly"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/auth_answer_0"
+                      },
+                      {
+                        "$ref": "#/components/schemas/auth_answer_1"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/ServiceModel/AuthService.svc/Login": {
+        "post": {
+          "security": [],
+          "tags": [
+            "Creatio Auth"
+          ],
+          "summary": "Авторизация в системе Creatio.",
+          "description": "Авторизация с целью получения Cookies для последующей аутентификации при выполнении друних запросов",
+          "requestBody": {
+            "description": "Body для передачу данных пользователя в систему Creatio",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/user"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Ответ на попытку авторизации от системы Creatio",
+              "headers": {
+                "Set-Cookie[0]": {
+                  "schema": {
+                    "type": "string",
+                    "example": "UserName=abcde12345; Path=/; HttpOnly"
+                  }
+                },
+                "Set-Cookie[1]": {
+                  "schema": {
+                    "type": "string",
+                    "example": "BPMLOADER=abcde12345; Path=/; HttpOnly"
+                  }
+                },
+                "Set-Cookie[2]": {
+                  "schema": {
+                    "type": "string",
+                    "example": ".ASPXAUTH=abcde12345; Path=/; HttpOnly"
+                  }
+                },
+                "Set-Cookie[3]": {
+                  "schema": {
+                    "type": "string",
+                    "example": "BPMCSRF=abcde12345; Path=/; HttpOnly"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/auth_answer_0"
+                      },
+                      {
+                        "$ref": "#/components/schemas/auth_answer_1"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/0/rest/OmniLeadStatusService/Create": {
+        "post": {
+          "tags": [
+            "Сreatio Web-Services (API)"
+          ],
+          "summary": "Создание лида.",
+          "description": "Создание лида в системе Creatio.",
+          "parameters": [
+            {
+              "in": "header",
+              "name": ".ASPXAUTH",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "in": "header",
+              "name": "BPMCSRF",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            },
+            {
+              "in": "header",
+              "name": "Cookie",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "requestBody": {
+            "description": "Body для передачу данных лида в систему Creatio",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/create_lead"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Ответ на попытку авторизации от системы Creatio",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/auth_answer_0"
+                      },
+                      {
+                        "$ref": "#/components/schemas/auth_answer_1"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
