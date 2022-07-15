@@ -1,19 +1,24 @@
 {
-  "name": "swagger-electron",
+  "name": "swagger",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "expressApp"
+    "start": "node expressApp.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.20.0",
     "cors": "^2.8.5",
-    "electron": "^19.0.7",
     "express": "^4.18.1",
-    "swagger-client": "^3.18.5",
     "swagger-ui-express": "^4.4.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Makoli-Den/swagger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Makoli-Den/swagger/issues"
+  },
+  "homepage": "https://github.com/Makoli-Den/swagger#readme",
+  "description": ""
 }
