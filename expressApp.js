@@ -1,8 +1,8 @@
 // Подключаем js фреймворк для запуска сайта
-const express = require('express');
+const express = require('./express');
 // Подключаем библиотеку CORS для кроссдоменных запросов
 // На данный момент не сильно необходимо, но лучше оставить
-const cors = require('cors');
+const cors = require('./cors');
 // Подключаем библиотеку сваггера для express фреймворка
 const swaggerUi = require('./swagger-ui-express');
 // Подключаем документацию для сваггера

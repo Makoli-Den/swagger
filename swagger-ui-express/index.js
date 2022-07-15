@@ -1,7 +1,7 @@
 'use strict'
 
-var express = require('express')
-var swaggerUi = require('swagger-ui-dist')
+var express = require('../express')
+var swaggerUi = require('../swagger-ui-dist')
 var favIconHtml = '<link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />' +
   '<link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />'
 var swaggerInit = ''
@@ -104,14 +104,23 @@ var htmlTplString = `
 
 <div id="swagger-ui"></div>
 
+<script type="text/javascript">
+  setBPMCSRF = function() {
+    var input = document.querySelectorAll('[placeholder="BPMCSRF"]');
+    var cookies = document.cookie.split("; ");
+    var bpmcsrf = "";
+    cookies.forEach(function(element) {
+      if (element.includes("BPMCSRF=")) {
+        bpmcsrf = element.split("=")[1];
+      }
+    });
+    input[0].value = bpmcsrf;
+  };
+</script>
 <script src="./swagger-ui-bundle.js"> </script>
 <script src="./swagger-ui-standalone-preset.js"> </script>
 <script src="./swagger-ui-init.js"> </script>
-<script type="text/javascript">
-  setBPMCSRF = function() {
-    document.querySelectorAll('[placeholder="BPMCSRF"]')[0].value = document.cookie.split("=")[1];
-  };
-</script>
+
 <% customJs %>
 <% customJsStr %>
 <% customCssUrl %>
