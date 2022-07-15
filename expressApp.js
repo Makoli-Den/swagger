@@ -4,8 +4,8 @@ const express = require('express');
 // На данный момент не сильно необходимо, но лучше оставить
 const cors = require('cors');
 // Подключаем библиотеку сваггера для express фреймворка
+const swaggerUi = require('./swagger-ui-express');
 // Подключаем документацию для сваггера
-const swaggerUi = require('swagger-ui-express');
 const openApiDocumentation = require('./openApi.json');
 // Создаем экземпляр приложения
 const swaggerApp = express();

@@ -22,11 +22,11 @@
   "tags": [
     {
       "name": "Авторизация",
-      "description": "Веб-сервисы предусмотренные вендором"
+      "description": "Веб-сервисы для авторизации в системе"
     },
     {
       "name": "Вер-сервисы",
-      "description": "Сторонние Веб-сервисы реализованные в системе"
+      "description": "Веб-сервисы реализованные в системе"
     }
   ],
   "components": {
@@ -359,72 +359,6 @@
         }
       }
     },
-    "/0/ServiceModel/OmniCustomAuth.svc/Login": {
-      "post": {
-        "security": [],
-        "tags": [
-          "Авторизация"
-        ],
-        "summary": "Авторизация в системе Creatio.",
-        "description": "Авторизация с целью получения Cookies для последующей аутентификации при выполнении других запросов",
-        "requestBody": {
-          "description": "Body для передачу данных пользователя в систему Creatio",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/user"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Ответ на попытку авторизации от системы Creatio",
-            "headers": {
-              "Set-Cookie[0]": {
-                "schema": {
-                  "type": "string",
-                  "example": "UserName=abcde12345; Path=/; HttpOnly"
-                }
-              },
-              "Set-Cookie[1]": {
-                "schema": {
-                  "type": "string",
-                  "example": "BPMLOADER=abcde12345; Path=/; HttpOnly"
-                }
-              },
-              "Set-Cookie[2]": {
-                "schema": {
-                  "type": "string",
-                  "example": ".ASPXAUTH=abcde12345; Path=/; HttpOnly"
-                }
-              },
-              "Set-Cookie[3]": {
-                "schema": {
-                  "type": "string",
-                  "example": "BPMCSRF=abcde12345; Path=/; HttpOnly"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/auth_answer_0"
-                    },
-                    {
-                      "$ref": "#/components/schemas/auth_answer_1"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/0/rest/OmniLeadStatusService/Create": {
       "post": {
         "tags": [
@@ -435,17 +369,8 @@
         "parameters": [
           {
             "in": "header",
-            "name": ".ASPXAUTH",
-            "description": "Обязательный параметр во всех случаях. Возвращается после выполнения запроса на авторизацию, содержит токен, который сохраняется в **куках** и должен быть указан в **заголовке запроса**",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "in": "header",
             "name": "BPMCSRF",
-            "description": "Обязательный параметр **если** включена *CSRF* защита в системе Creatio. Возвращается после выполнения запроса на авторизацию, содержит токен, который сохраняется в **куках** и должен быть указан в **заголовке запроса**.",
+            "description": "Обязательный параметр **если** включена *CSRF* защита в системе Creatio. Возвращается после выполнения запроса на авторизацию, содержит токен, который сохраняется в **куках** и должен быть указан в **заголовке запроса**.</br> **Для заполнения нажать на кнопку в хедере страницы!**",
             "schema": {
               "type": "string"
             },
