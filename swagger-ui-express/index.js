@@ -106,7 +106,7 @@ var htmlTplString = `
 
 <script type="text/javascript">
   setBPMCSRF = function() {
-    var input = document.querySelectorAll('[placeholder="BPMCSRF"]');
+    var inputs = document.querySelectorAll('[placeholder="BPMCSRF"]');
     var cookies = document.cookie.split("; ");
     var bpmcsrf = "";
     cookies.forEach(function(element) {
@@ -114,7 +114,9 @@ var htmlTplString = `
         bpmcsrf = element.split("=")[1];
       }
     });
-    input[0].value = bpmcsrf;
+    inputs.forEach(function(element) {
+      element.value = bpmcsrf
+    });
   };
 </script>
 <script src="./swagger-ui-bundle.js"> </script>
